@@ -1,0 +1,11 @@
+[profile.default]
+src = "shib/contracts"
+out = "artifacts"
+libs = ["node_modules", "lib"]
+solc_version = "0.8.20"
+remappings = [
+    "@openzeppelin/=node_modules/@openzeppelin/",
+    "@uniswap/=node_modules/@uniswap/",
+    "hardhat/=node_modules/hardhat/",
+    "forge-std/=lib/forge-std/src/"
+]

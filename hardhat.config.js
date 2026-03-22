@@ -1,0 +1,41 @@
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
+
+/** @type import('hardhat/config').HardhatUserConfig */
+module.exports = {
+  solidity: {
+    version: "0.8.20",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    },
+  },
+  // 默认 contracts 目录为 "contracts"，无需额外配置
+  paths: {
+    sources: "./shib/contracts",
+    tests: "./shib/contracts/test"
+  },
+  networks: {
+    hardhat: {
+      chainId: 31337,
+    },
+    localhost: {
+      url: "http://127.0.0.1:8545",
+      chainId: 31337, // 与 hardhat 网络相同
+      // accounts: 由本地节点提供，通常无需配置
+    },
+    sepolia: {
+      url: process.env.SEPOLIA_RPC_URL,
+      accounts: [process.env.PRIVATE_KEY], // 使用环境变量
+      chainId: 11155111, // Sepolia 链 ID
+      gasPrice: 15000000000, // 15 Gwei
+      loggingEnabled: true, // 启用详细日志
+      saveDeployments: true, // 保存部署记录
+    }
+  },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY
+  }
+};
